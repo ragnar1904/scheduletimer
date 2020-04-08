@@ -14,12 +14,23 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "scheduletimer.helloWorld",
-        "title": "Hello World"
+    "configuration": {
+      "title": "ScheduleTimer",
+      "properties": {
+        "scheduleTimer.formatString": {
+          "type": "string",
+          "default": "yyyy/MM/dd HH:mm:ss",
+          "description": "Date format string."
+        },
+        "scheduleTimer.schedules": {
+          "type": "array",
+          "default": [
+            "18:00"
+          ],
+          "description": "Schedule Times."
+        }
       }
-    ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",
