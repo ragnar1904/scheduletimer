@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 
 import { getConfig } from './lib/config';
 import { formatDate } from './lib/formatter';
-import { getSchedules, isTimePassed, Schedule } from './lib/schedule';
+import { formatMessage, getSchedules, isTimePassed, Schedule } from './lib/schedule';
 
 let statusBarClock: vscode.StatusBarItem;
 let timer: NodeJS.Timeout;
@@ -34,6 +34,7 @@ class TimerApplication {
     this.now = new Date();
     this.config = getConfig();
     this.displayFormat = this.config.get<string>("formatString");
+    this.displayMessage = this.config.get<string>("displayMessage");
     this.schedules = getSchedules(this.config);
     this.initializeSchedule();
     this.element = el;
@@ -66,7 +67,7 @@ class TimerApplication {
   checkSchedulesTime = () => {
     this.schedules = this.schedules.map((item) => {
       if (isTimePassed(item, this.now) && item.notified === false) {
-        vscode.window.showInformationMessage(item.showMessage);
+        vscode.window.showInformationMessage(formatMessage(item));
         item.notified = true;
       }
       return item;
