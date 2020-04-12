@@ -22,6 +22,11 @@
           "default": "yyyy/MM/dd HH:mm:ss",
           "description": "Date format string."
         },
+        "scheduleTimer.displayMessage": {
+          "type": "string",
+          "default": "It's [time] now!",
+          "description": "The message that appears in the notification. [time] is replaced by the notification time (HH/DD)."
+        },
         "scheduleTimer.schedules": {
           "type": "array",
           "default": [
