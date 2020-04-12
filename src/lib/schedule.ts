@@ -60,8 +60,9 @@ const validateTime = (time: string): boolean => {
 };
 
 export const formatMessage = (schedule: Schedule) => {
-  const displayTime = `${("0" + schedule.hour.toString()).slice(-2)}:${(
-    "0" + schedule.minute.toString()
-  ).slice(-2)}`;
-  return schedule.showMessage.replace("[time]", displayTime);
+  const displayTime =
+    ("0" + schedule.hour.toString()).slice(-2) +
+    ":" +
+    ("0" + schedule.minute.toString()).slice(-2);
+  return schedule.showMessage.replace(/\[time\]/g, displayTime);
 };
